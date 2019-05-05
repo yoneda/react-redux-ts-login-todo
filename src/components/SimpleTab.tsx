@@ -14,7 +14,7 @@ const SimpleTab: React.FC<Props> = ({ titles, elements }: Props) => {
     <div>
       {
         titles.map((title,key)=>(
-          <span>
+          <span key={key}>
             <span
               style={key===index?tabSelectedStyle:tabStyle}
               onClick={()=>setIndex(key)}>
