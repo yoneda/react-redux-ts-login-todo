@@ -1,26 +1,18 @@
 import React from 'react';
-import logo from './logo.svg';
+import Test from "./components/Test";
+import SimpleTab from "./components/SimpleTab";
 import './App.css';
 
 const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h2>todoapp</h2>
+      <SimpleTab
+        titles={["private","global"]}
+        elements={[<Test text={"contents of private"} />,<Test text={"contents of global"} />]}
+      />
     </div>
-  );
+  )
 }
 
 export default App;
