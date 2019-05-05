@@ -1,37 +1,49 @@
 import React from 'react';
 import Title from "./components/Title";
 import SimpleTab from "./components/SimpleTab";
-import Test from "./components/Test";
+import Tasks from "./components/Tasks";
 import YourTaskElement from "./components/YourTaskElement";
 import './App.css';
+import TaskElement from './components/TaskElement';
 
 const initialTasks = () => [
-  {id:0, name:"clean my room", done: false},
-  {id:1, name:"sleep a lot", done: false},
-  {id:2, name:"learn programming", done: false},
+  { id: 0, name: "clean my room", done: false },
+  { id: 1, name: "sleep a lot", done: false },
+  { id: 2, name: "learn programming", done: false },
+]
+
+const otherTasks = () => [
+  { id: 0, name: "read a book", done: false, user: "yoneda" },
+  { id: 1, name: "clean my window", done: false, user: "yoneda" },
+  { id: 2, name: "write texts", done: true, user: "tanaka" },
 ]
 
 const App: React.FC = () => {
   const [tasks, setTasks] = React.useState(initialTasks);
+  const renderPrivateTasks = () => tasks.map((task, key) => (
+    <YourTaskElement
+      {...task}
+      key={task.id}
+      doneHandler={() => setTasks(tasks.map(doneTask => doneTask.id === task.id ? { ...doneTask, done: !doneTask.done } : doneTask))}
+      removeHandler={() => setTasks(tasks.filter(removeTask => removeTask.id !== task.id))}
+    />
+  ))
+  const renderGlobalTasks = () => otherTasks().map(task => (
+    <TaskElement
+      {...task}
+      key={task.id}
+    />
+  ))
   return (
     <div>
       <Title text={"todoapp"} />
       <SimpleTab
-        titles={["private","global"]}
-        elements={[<Test text={"contents of private"} />,<Test text={"contents of global"} />]}
+        titles={["private", "global"]}
+        elements={[
+          <Tasks>{renderPrivateTasks()}</Tasks>,
+          <Tasks>{renderGlobalTasks()}</Tasks>
+        ]}
       />
-      {
-        tasks.map((task,key)=>(
-          <YourTaskElement
-            key={key}
-            name={task.name}
-            done={task.done}
-            doneHandler={()=>setTasks(tasks.map(doneTask=>doneTask.id===task.id ? {...doneTask,done:!doneTask.done} : doneTask))}
-            removeHandler={()=>setTasks(tasks.filter(removeTask=>removeTask.id!==task.id))}
-          />
-          )
-        )
-      }
     </div>
   )
 }
