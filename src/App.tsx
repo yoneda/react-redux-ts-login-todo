@@ -38,12 +38,10 @@ const App: React.FC = () => {
     <div>
       <Title text={"todoapp"} />
       <SimpleTab
-        titles={["private", "global"]}
-        elements={[
-          <Tasks>{renderPrivateTasks()}</Tasks>,
-          <Tasks>{renderGlobalTasks()}</Tasks>
-        ]}
-      />
+        titles={["private", "global"]}>
+        <Tasks>{renderPrivateTasks()}</Tasks>
+        <Tasks>{renderGlobalTasks()}</Tasks>
+      </SimpleTab>
     </div>
   )
 }

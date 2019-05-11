@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { ReactNode, ReactElement } from 'react';
 
 export interface Props {
   titles: string[];
-  elements: React.ReactElement[];
+  children: ReactElement[]
 }
 
 const tabStyle: React.CSSProperties = { cursor: "pointer", color: "gray" };
 const tabSelectedStyle: React.CSSProperties = { cursor: "pointer", color: "black" };
 
-const SimpleTab: React.FC<Props> = ({ titles, elements }: Props) => {
+const SimpleTab: React.FC<Props> = ({ titles, children }: Props) => {
   const [index, setIndex] = React.useState(0);
   return (
     <div>
@@ -24,7 +24,7 @@ const SimpleTab: React.FC<Props> = ({ titles, elements }: Props) => {
           </span>
         ))
       }
-      {elements[index]}
+      {children[index]}
     </div>
   )
 }

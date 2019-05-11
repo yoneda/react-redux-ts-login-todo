@@ -45,13 +45,10 @@ const HomePage: React.FC = () => {
         <Link to="login">sign in</Link>
         <Line />
       </Header>
-      <SimpleTab
-        titles={["private", "global"]}
-        elements={[
-          <Tasks>{renderPrivateTasks()}</Tasks>,
-          <Tasks>{renderGlobalTasks()}</Tasks>
-        ]}
-      />
+      <SimpleTab titles={["private", "global"]}>
+        <Tasks>{renderPrivateTasks()}</Tasks>
+        <Tasks>{renderGlobalTasks()}</Tasks>
+      </SimpleTab>
     </div>
   )
 }
