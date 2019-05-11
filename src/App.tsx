@@ -4,7 +4,6 @@ import SimpleTab from "./components/SimpleTab";
 import Tasks from "./components/Tasks";
 import TaskElement from './components/TaskElement';
 import YourTaskElement from "./components/YourTaskElement";
-import TaskInput from "./components/TaskInput";
 import './App.css';
 
 const initialTasks = () => [
