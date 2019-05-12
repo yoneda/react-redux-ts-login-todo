@@ -1,22 +1,24 @@
-import React from 'react';
-import FormInput from "./FormInput";
-import Button from "./Button";
+import React, { ReactElement } from 'react';
 
 export interface Props {
-  exeHandler: exeHandlerProp;
+  renderForm1: renderForm1Prop;
+  renderForm2: renderForm2Prop;
+  renderButton: renderButtonProp;
 }
 
-type exeHandlerProp = (user:string,pass:string) => void;
+type renderForm1Prop = (user:string, setUser:any) => ReactElement;
+type renderForm2Prop = (pass:string, setPass:any) => ReactElement;
+type renderButtonProp = (user:string, pass:string) => ReactElement;
 
-const LoginForm: React.FC<Props> = ({ exeHandler }:Props ) => {
+const LoginForm: React.FC<Props> = ({ renderForm1, renderForm2, renderButton }:Props ) => {
   const [user, setUser] = React.useState("");
   const [pass, setPass] = React.useState("");
   return(
     <div>
       <div>sing in</div>
-      <FormInput text={user} placeholder={"user"} changeHandler={(message)=>setUser(message)} /><br />
-      <FormInput text={pass} placeholder={"pass"} changeHandler={(message)=>setPass(message)} /><br />
-      <Button text={"sign in"} clickHandler={()=>exeHandler(user,pass)} />
+      {renderForm1(user,setUser)}<br />
+      {renderForm2(pass,setPass)}<br />
+      {renderButton(user,pass)}
     </div>
   )
 }
