@@ -4,7 +4,7 @@ type Props = {
   children: ReactNode
 }
 
-const Header: React.FC<Props> = ({ children }) => {
+const Header: React.FC<Props> = ({ children }:Props) => {
   return (
     <div>
       {children}
